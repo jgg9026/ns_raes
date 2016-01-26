@@ -24,6 +24,7 @@
         <FIELD NAME="blockid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="pagetitle" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="linkdescription" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="linkurl" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Url"/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="component" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="raeid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Rae record to be modified, new record if null"/>
