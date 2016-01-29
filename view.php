@@ -42,14 +42,15 @@
       $name = $simplehtml->get_new_filename('attachment');
       print_r($name);
       $itemid = new DateTime();
-      $simplehtml->save_stored_file('attachment',$contextid,'block_ns_raes','draft',$itemid->getTimestamp(),'/',$name,true,$USER->id);
+      $iditem=$itemid->getTimestamp();
+      $simplehtml->save_stored_file('attachment',$contextid,'block_ns_raes','draft',$iditem,'/',$name,true,$USER->id);
         //$simplehtml->save_file('attachment','/',true);
       //$simplehtml->save_files('/Applications/MAMP/htdocs/blocks');//depreciada, no funciona
 //       if ($draftitemid = file_get_submitted_draft_itemid('attachment')) {
 //     print_r(file_save_draft_area_files($draftitemid, 8, 'mod_assignment', 'attachment', 0, array('subdirs' => false, 'maxfiles' => 1)));
 // }
-// $fileurl=file_encode_url($CFG->wwwroot . '/block_ns_raes.php', '/' .$PAGE->context->id. '/mod_assignment/attachment');
-// print_r($fileurl);
+        $fileurl=file_encode_url($CFG->wwwroot . '/block_ns_raes.php', '/' .$contextid. '/mod_assignment/attachment');
+        print_r($fileurl);
 
             if ($fromform->id != 0) {
         if (!$DB->update_record('block_ns_raes', $fromform)) {
@@ -60,7 +61,7 @@
               print_error('inserterror', 'block_ns_raes');
         }
       }
-      redirect($url);
+      //redirect($url);
   } else {
       $site = get_site();
       echo $OUTPUT->header();
