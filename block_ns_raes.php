@@ -10,9 +10,9 @@ class block_ns_raes extends block_base {
       $this->content         =  new stdClass;
       Global $DB, $COURSE, $PAGE;
       $array = explode('_',$COURSE->shortname);
-      $records = $DB->get_records('block_ns_raes',array('component'=>$array[2]));   
+      $records = $DB->get_records('block_ns_raes',array('component'=>$array[2], 'status'=>1));   
       $showrecords = '';
-      $editimgcurl = new moodle_url('/pix/t/edit.png');
+      $editimgcurl = new moodle_url('/pix/t/editstring.png');
       $deletepicurl = new moodle_url('/pix/t/delete.png');
       $showrecords.=html_writer::start_tag('ul');
       $context = context_course::instance($COURSE->id);
@@ -24,7 +24,7 @@ class block_ns_raes extends block_base {
         $showrecords .= html_writer::tag('p',$record->linkdescription, array('class'=>'linkdescription','style'=>'text-align: justify;left:10px;'));
         $temp=html_writer::tag('a',$record->linkurl);
         $showrecords .= html_writer::tag('p',html_writer::tag('a',$record->linkurl),array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;'));
-        $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id));
+        $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context'=>$this->context->id));
         $deleteparam = array('id' => $record->id, 'courseid' => $COURSE->id);
         $deleteurl = new moodle_url('/blocks/ns_raes/delete.php', $deleteparam);
         if ($canmanage) {
@@ -38,7 +38,7 @@ class block_ns_raes extends block_base {
       $showrecords.=html_writer::end_tag('ul');
       $this->content->text   = $showrecords;
    
-      $url = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2]));
+      $url = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2],'context'=>$this->context->id));
       if (has_capability('block/ns_raes:managepages', $context)) {
         $this->content->footer = html_writer::link($url, get_string('addpage', 'block_ns_raes'));
       } else {

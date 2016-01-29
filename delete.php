@@ -24,11 +24,16 @@
     $optionsyes = new moodle_url('/blocks/ns_raes/delete.php', array('id' => $id, 'courseid' => $courseid, 'confirm' => 1, 'sesskey' => sesskey()));
     echo $OUTPUT->confirm(get_string('deletepage', 'block_ns_raes', $simplehtmlpage->pagetitle), $optionsyes, $optionsno);
 } else {
-    if (confirm_sesskey()) {
-        if (!$DB->delete_records('block_ns_raes', array('id' => $id))) {
-            print_error('deleteerror', 'block_ns_raes');
-        }
-    } else {
+    if (confirm_sesskey())
+    {
+      $temp=$DB->get_record('block_ns_raes',array('id'=>$id));
+      $temp->status=0;
+      if (!$DB->update_record('block_ns_raes',$temp))
+      {
+        print_error('deleteerror', 'block_ns_raes');
+      }
+    }
+    else {
         print_error('sessionerror', 'block_ns_raes');
     }
     $url = new moodle_url('/course/view.php', array('id' => $courseid));
