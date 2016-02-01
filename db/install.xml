@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="blocks/ns_raes/db" VERSION="20160128" COMMENT="XMLDB file for Moodle blocks/ns_raes"
+<XMLDB PATH="blocks/ns_raes/db" VERSION="20160201" COMMENT="XMLDB file for Moodle blocks/ns_raes"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -9,12 +9,15 @@
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="blockid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Block id"/>
         <FIELD NAME="pagetitle" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false" COMMENT="Link Title"/>
-        <FIELD NAME="linkdescription" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="A description for your link"/>
-        <FIELD NAME="linkurl" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="Url"/>
+        <FIELD NAME="linkdescription" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="A description for your link"/>
+        <FIELD NAME="linkurl" TYPE="char" LENGTH="1333" NOTNULL="false" SEQUENCE="false" COMMENT="Url"/>
         <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="component" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="0-not visible or deleted
-1-visible"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false" COMMENT="0-not visible or deleted 1-visible"/>
+        <FIELD NAME="file_name" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="context_id" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="if of the file table"/>
+        <FIELD NAME="item_id" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="itemid -&amp;gt; File table"/>
+        <FIELD NAME="click_count" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Number of clicks on each record"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
