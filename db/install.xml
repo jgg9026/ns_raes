@@ -18,6 +18,13 @@
         <FIELD NAME="context_id" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="if of the file table"/>
         <FIELD NAME="item_id" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="itemid -&amp;gt; File table"/>
         <FIELD NAME="click_count" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" COMMENT="Number of clicks on each record"/>
+        <FIELD NAME="author_name" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="author_lastname" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="keywords" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="resume" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="resource_type" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="areas" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="languages" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

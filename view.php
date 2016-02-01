@@ -10,7 +10,7 @@
   $blockid = required_param('blockid', PARAM_INT);
   $id = optional_param('id', 0, PARAM_INT);
   $component = required_param('component', PARAM_RAW);
-  $contextid = required_param('context',PARAM_INT);
+  $contextid = required_param('context_id',PARAM_INT);
   if (!$course = $DB->get_record('course', array('id' => $courseid))) {
       print_error('invalidcourse', 'block_ns_raes', $courseid);
   }
@@ -26,7 +26,8 @@
   $toform['component'] = $component;
   $toform['id'] = $id;
   $toform['status']=1;
-  $toform['context']=$contextid;
+  $toform['context_id']=$contextid;
+
   $simplehtml->set_data($toform);
 
   $settingsnode = $PAGE->settingsnav->add(get_string('simplehtmlsettings', 'block_ns_raes'));
@@ -40,28 +41,26 @@
       $fromform=$simplehtml->get_data();
       //$saveurl = new moodle_url('/blocks/ns_raes/db'));
       $name = $simplehtml->get_new_filename('attachment');
-      print_r($name);
+      //print_r($name);
       $itemid = new DateTime();
       $iditem=$itemid->getTimestamp();
       $simplehtml->save_stored_file('attachment',$contextid,'block_ns_raes','draft',$iditem,'/',$name,true,$USER->id);
-        //$simplehtml->save_file('attachment','/',true);
-      //$simplehtml->save_files('/Applications/MAMP/htdocs/blocks');//depreciada, no funciona
-//       if ($draftitemid = file_get_submitted_draft_itemid('attachment')) {
-//     print_r(file_save_draft_area_files($draftitemid, 8, 'mod_assignment', 'attachment', 0, array('subdirs' => false, 'maxfiles' => 1)));
-// }
-        $fileurl=file_encode_url($CFG->wwwroot . '/block_ns_raes.php', '/' .$contextid. '/mod_assignment/attachment');
-        print_r($fileurl);
-
-            if ($fromform->id != 0) {
+      $fromform->file_name=$name;
+      $fromform->item_id=$iditem;
+      $fromform->context_id=$contextid;
+      if ($fromform->id != 0)
+      {
         if (!$DB->update_record('block_ns_raes', $fromform)) {
           print_error('updateerror', 'block_ns_raes');
         }
-      } else {
+      }else
+      {
+        $fromform->click_count=0;
         if (!$DB->insert_record('block_ns_raes', $fromform)) {
               print_error('inserterror', 'block_ns_raes');
         }
       }
-      //redirect($url);
+      redirect($url);
   } else {
       $site = get_site();
       echo $OUTPUT->header();

@@ -22,9 +22,18 @@ class block_ns_raes extends block_base {
         $showrecords.=html_writer::start_tag('li');
         $showrecords .=  html_writer::tag('h4',$record->pagetitle, array ('class'=>'titulo', 'style'=>'margin-left: 0px;font-size: 1.1em;color: firebrick;'));
         $showrecords .= html_writer::tag('p',$record->linkdescription, array('class'=>'linkdescription','style'=>'text-align: justify;left:10px;'));
-        $temp=html_writer::tag('a',$record->linkurl);
-        $showrecords .= html_writer::tag('p',html_writer::tag('a',$record->linkurl),array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;'));
-        $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context'=>$this->context->id));
+        if($record->item_id!=0){
+          $urldocument = new moodle_url('/blocks/ns_raes/download.php',array('context_id'=>$record->context_id
+            ,'itemid'=>$record->item_id,'filename'=>$record->file_name,'id'=>$record->id));
+          $showrecords .=html_writer::link($urldocument,$record->file_name);
+        }
+        // $temp=html_writer::tag('a',$record->linkurl);
+        // $showrecords .= html_writer::tag('p',html_writer::tag('a',$record->linkurl),array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;'));
+         //lo que introduje nuevo
+        $redirecturl = new moodle_url('/blocks/ns_raes/redirect.php', array('urlext'=>$record->linkurl, 'id' => $record->id, 'component'=>$array[2],'context'=>$this->context->id));
+        $showrecords .= html_writer::tag('p',html_writer::link($redirecturl, $record->linkurl ,array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;')));
+        //--------------------------------
+        $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context_id'=>$this->context->id));
         $deleteparam = array('id' => $record->id, 'courseid' => $COURSE->id);
         $deleteurl = new moodle_url('/blocks/ns_raes/delete.php', $deleteparam);
         $urlget = new moodle_url('/blocks/ns_raes/test.php', array());
@@ -40,7 +49,7 @@ class block_ns_raes extends block_base {
       $showrecords.=html_writer::end_tag('ul');
       $this->content->text   = $showrecords;
    
-      $url = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2],'context'=>$this->context->id));
+      $url = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2],'context_id'=>$this->context->id));
       if (has_capability('block/ns_raes:managepages', $context)) {
         $this->content->footer = html_writer::link($url, get_string('addpage', 'block_ns_raes'));
 
