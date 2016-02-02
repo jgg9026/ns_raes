@@ -125,7 +125,7 @@
         //     $mform->addRule('attachment', null, 'required');
         //$this->set_upload_manager(new upload_manager('attachment', true, false, $COURSE, false, 0, true, true, false));
             $mform->addElement('file', 'attachment', get_string('attachment','block_ns_raes'));
-            $mform->addRule('attachment', null, 'required');
+            //$mform->addRule('attachment', null, 'required');
             $mform->setType('MAX_FILE_SIZE',PARAM_INT);
      
 
@@ -134,7 +134,7 @@
         //----
         
         $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_ns_raes'));
-        $mform->addRule('linkurl', null, 'required', null, 'client');
+        //$mform->addRule('linkurl', null, 'required', null, 'client');
         $mform->setType('linkurl', PARAM_TEXT);
         $mform->addElement('hidden', 'blockid');
         $mform->setType('blockid', PARAM_INT);
@@ -156,4 +156,14 @@
         $mform->setType('click_count',PARAM_INT);
         $this->add_action_buttons();
     }
+    function validation($data, $files){
+            $errors = array();
+            $website = $data['linkurl'];
+            $attachment = $files['attachment'];
+            if ($website==null && $attachment==null) {
+              $errors['linkurl'] = "Agregue una URL o un archivo"; 
+            }           
+            return $errors;
+
+        }
   }
