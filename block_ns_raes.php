@@ -22,6 +22,7 @@ class block_ns_raes extends block_base {
         $showrecords.=html_writer::start_tag('li');
         $showrecords .=  html_writer::tag('h4',$record->pagetitle, array ('class'=>'titulo', 'style'=>'margin-left: 0px;font-size: 1.1em;color: firebrick;'));
         $showrecords .= html_writer::tag('p',$record->linkdescription, array('class'=>'linkdescription','style'=>'text-align: justify;left:10px;'));
+        $showrecords .= html_writer::tag('p',$record->author_name);
         if($record->item_id!=0){
           $urldocument = new moodle_url('/blocks/ns_raes/download.php',array('context_id'=>$record->context_id
             ,'itemid'=>$record->item_id,'filename'=>$record->file_name,'id'=>$record->id));

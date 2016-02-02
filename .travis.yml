@@ -1,0 +1,6 @@
+language: php
+php:
+  - 5.5
+  - 5.4
+  - hhvm
+script: phpunit block_ns_raes.php
