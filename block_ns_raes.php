@@ -28,7 +28,6 @@ class block_ns_raes extends block_base {
             ,'itemid'=>$record->item_id,'filename'=>$record->file_name,'id'=>$record->id));
           $showrecords .=html_writer::link($urldocument,$record->file_name);
         }
-        // $temp=html_writer::tag('a',$record->linkurl);
         // $showrecords .= html_writer::tag('p',html_writer::tag('a',$record->linkurl),array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;'));
          //lo que introduje nuevo
         $redirecturl = new moodle_url('/blocks/ns_raes/redirect.php', array('urlext'=>$record->linkurl, 'id' => $record->id, 'component'=>$array[2],'context'=>$this->context->id));
