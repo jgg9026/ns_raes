@@ -21,5 +21,5 @@
           print_error('updateerror', 'block_ns_raes');
         }
 
-	$urlfixed = 'http://'.$urlext;
-	redirect($urlfixed);
+	//$urlfixed = 'http://'.$urlext;
+	redirect($urlext);
