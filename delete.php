@@ -19,6 +19,7 @@
   $PAGE->set_url('/blocks/ns_raes/view.php', array('id' => $id, 'courseid' => $courseid));
   $heading = $site->fullname . ' :: ' . $course->shortname . ' :: ' . $simplehtmlpage->pagetitle;
   $PAGE->set_heading($heading);
+  echo $OUTPUT->header();
   if (!$confirm) {
     $optionsno = new moodle_url('/course/view.php', array('id' => $courseid));
     $optionsyes = new moodle_url('/blocks/ns_raes/delete.php', array('id' => $id, 'courseid' => $courseid, 'confirm' => 1, 'sesskey' => sesskey()));
@@ -39,5 +40,5 @@
     $url = new moodle_url('/course/view.php', array('id' => $courseid));
     redirect($url);
 }
-  echo $OUTPUT->header();
+  
   echo $OUTPUT->footer();

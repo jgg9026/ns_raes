@@ -8,7 +8,6 @@
     function definition() {
  
         $mform =& $this->_form;
-        //$contextid= $this->_customdata['contextid'];
         $mform->addElement('header','displayinfo', get_string('textfields', 'block_ns_raes'));
         //titulo
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_ns_raes'));
@@ -127,10 +126,7 @@
             $mform->addElement('file', 'attachment', get_string('attachment','block_ns_raes'));
             //$mform->addRule('attachment', null, 'required');
             $mform->setType('MAX_FILE_SIZE',PARAM_INT);
-     
-
-
-
+      
         //----
         
         $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_ns_raes'));
