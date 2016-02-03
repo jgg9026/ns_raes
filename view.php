@@ -48,17 +48,15 @@
       $fromform->file_name=$name;
       $fromform->item_id=$iditem;
       $fromform->context_id=$contextid;
-      if ($fromform->linkurl!=null){
-        if (strpos($fromform->linkurl, 'http')===false){
+      if($fromform->linkurl!=null)
+      {
+         if (strpos($fromform->linkurl, 'http')===false){
           print_object(strpos($fromform->linkurl, 'http'));
           $fromform->linkurl = 'http://'.$fromform->linkurl;
         }
       }
 
-      if (strpos($fromform->linkurl, 'http')===false){
-          print_object(strpos($fromform->linkurl, 'http'));
-          $fromform->linkurl = 'http://'.$fromform->linkurl;
-        }
+     
       if ($fromform->id != 0)
       {
         if (!$DB->update_record('block_ns_raes', $fromform)) {
@@ -77,13 +75,10 @@
       echo $OUTPUT->header();
       if ($id) {
         $simplehtmlpage = $DB->get_record('block_ns_raes', array('id' => $id));
-        if($viewpage) {
-          //block_simplehtml_print_page($simplehtmlpage);
-        } else {
           $simplehtml->set_data($simplehtmlpage);
           $simplehtml->display();
           }
-        } else {
+         else {
           $simplehtml->display();
           }
   }

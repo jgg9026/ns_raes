@@ -47,14 +47,11 @@ class block_ns_raes extends block_base {
             } else {
             }
           $showrecords.=html_writer::end_tag('div');
-          //----DIV para la popularidad y los botones de edicion y borrado
+          
             $showrecords.=html_writer::start_tag('div',array('style'=>'top:0%;width: auto;'));
              
 
             $showrecords .=  html_writer::tag('h4','Popularidad: '.$pop.'%', array ('class'=>'titulo', 'style'=>'font-size: 0.8em;display: block;text-align: right;padding-left: 132px;'));
-          //$showrecords.=html_writer::end_tag('div');
-        //----DIV para la popularidad y los botones de edicion y borrado
-
 
         $showrecords.=html_writer::end_tag('div');
         $showrecords .= html_writer::tag('p',$record->resume);
@@ -70,29 +67,11 @@ class block_ns_raes extends block_base {
             ,'itemid'=>$record->item_id,'filename'=>$record->file_name,'id'=>$record->id));
           $showrecords .=html_writer::link($urldocument,$record->file_name);
         }
-        // $showrecords .= html_writer::tag('p',html_writer::tag('a',$record->linkurl),array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;'));
-         //lo que introduje nuevo
         if($record->linkurl)
         {
           $redirecturl = new moodle_url('/blocks/ns_raes/redirect.php', array('urlext'=>$record->linkurl, 'id' => $record->id, 'component'=>$array[2],'context'=>$this->context->id));
           $showrecords .= html_writer::tag('p',html_writer::link($redirecturl, $record->linkurl ,array('class'=>'linkurl', 'style'=>'text-align: center;margin-left: 5px;')));
         }
-       
-        //--------------------------------
-        // $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context_id'=>$this->context->id));
-        // $deleteparam = array('id' => $record->id, 'courseid' => $COURSE->id);
-        // $deleteurl = new moodle_url('/blocks/ns_raes/delete.php', $deleteparam);
-        // $urlget = new moodle_url('/blocks/ns_raes/test.php', array());
-        // if ($canmanage)
-        // {
-        //   $showrecords .= html_writer::start_tag('div',array('style'=>'text-align: right;'));
-        //     $showrecords .= html_writer::link($editurl2, html_writer::tag('img', '', array('src' => $editimgcurl, 'alt' => 'Edit')),array('style'=>'  display: inline-block;padding-right: 5px;text-align: left;'));
-        //     $showrecords .= html_writer::link($deleteurl, html_writer::tag('img', '', array('src' => $deletepicurl, 'alt' => 'Delete')),array('style'=>'  display: inline-block;padding-right: 5px;text-align: left;'));
-        //   $showrecords .= html_writer::end_tag('div');
-
-        //   //$showrecords .= html_writer::link($urlget,'Prueba');
-        // } else {
-        // }
         $showrecords .= '<br>';
         $showrecords.=html_writer::end_tag('li');
       }
