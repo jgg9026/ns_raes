@@ -48,6 +48,13 @@
       $fromform->file_name=$name;
       $fromform->item_id=$iditem;
       $fromform->context_id=$contextid;
+      if ($fromform->linkurl!=null){
+        if (strpos($fromform->linkurl, 'http')===false){
+          print_object(strpos($fromform->linkurl, 'http'));
+          $fromform->linkurl = 'http://'.$fromform->linkurl;
+        }
+      }
+
       if (strpos($fromform->linkurl, 'http')===false){
           print_object(strpos($fromform->linkurl, 'http'));
           $fromform->linkurl = 'http://'.$fromform->linkurl;
@@ -80,4 +87,4 @@
           $simplehtml->display();
           }
   }
-?>
+      echo $OUTPUT->footer();

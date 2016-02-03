@@ -24,8 +24,12 @@ class block_ns_raes extends block_base {
       $canview = has_capability('block/ns_raes:viewpages', $context);
 
       foreach($records as $record){
+                $pop=0;
+                if($count!=0){
+                $pop=round(((($record->click_count)/$count)*100),0, PHP_ROUND_HALF_DOWN);
+                }
         $showrecords.=html_writer::start_tag('li');
-
+        
           $showrecords.=html_writer::start_tag('div');
             $showrecords .=  html_writer::tag('h4',$record->pagetitle, array ('class'=>'titulo', 'style'=>'margin-left: 0px;font-size: 1.1em;color: firebrick;display: inline-block;text-align: left;'));
             $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context_id'=>$this->context->id));
@@ -47,7 +51,7 @@ class block_ns_raes extends block_base {
             $showrecords.=html_writer::start_tag('div',array('style'=>'top:0%;width: auto;'));
              
 
-            $showrecords .=  html_writer::tag('h4','Popularidad: '.round(((($record->click_count)/$count)*100),0, PHP_ROUND_HALF_DOWN).'%', array ('class'=>'titulo', 'style'=>'font-size: 0.8em;display: block;text-align: right;padding-left: 132px;'));
+            $showrecords .=  html_writer::tag('h4','Popularidad: '.$pop.'%', array ('class'=>'titulo', 'style'=>'font-size: 0.8em;display: block;text-align: right;padding-left: 132px;'));
           //$showrecords.=html_writer::end_tag('div');
         //----DIV para la popularidad y los botones de edicion y borrado
 
