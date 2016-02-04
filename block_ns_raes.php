@@ -29,12 +29,12 @@ class block_ns_raes extends block_base {
                 $pop=round(((($record->click_count)/$count)*100),0, PHP_ROUND_HALF_DOWN);
                 }
         $showrecords.=html_writer::start_tag('li');
-          $showrecords.=html_writer::start_tag('div');
-            $showrecords .=  html_writer::tag('h4',$record->pagetitle, array ('class'=>'titulo', 'style'=>'margin-left: 0px;font-size: 1.1em;color: firebrick;display: inline-block;text-align: left;'));
-            $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context_id'=>$this->context->id));
-            $deleteparam = array('id' => $record->id, 'courseid' => $COURSE->id);
-            $deleteurl = new moodle_url('/blocks/ns_raes/delete.php', $deleteparam);
-            $urlget = new moodle_url('/blocks/ns_raes/test.php', array());
+        $showrecords.=html_writer::start_tag('div');
+        $showrecords .=  html_writer::tag('h4',$record->pagetitle, array ('class'=>'titulo', 'style'=>'margin-left: 0px;font-size: 1.1em;color: firebrick;display: inline-block;text-align: left;'));
+        $editurl2 = new moodle_url('/blocks/ns_raes/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'component'=>$array[2], 'id'=>$record->id,'context_id'=>$this->context->id));
+        $deleteparam = array('id' => $record->id, 'courseid' => $COURSE->id);
+        $deleteurl = new moodle_url('/blocks/ns_raes/delete.php', $deleteparam);
+        //$urlget = new moodle_url('/blocks/ns_raes/test.php', array());
             if ($canmanage)
             {
               $showrecords .= html_writer::start_tag('div',array('style'=>'text-align: right;margin-left:55%;display: inline;'));

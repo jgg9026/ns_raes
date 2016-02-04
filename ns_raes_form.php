@@ -8,6 +8,8 @@
     function definition() {
  
         $mform =& $this->_form;
+        $itemid = $this->_customdata['itemid'];
+        $contextid = $this->_customdata['contextid'];
         $mform->addElement('header','displayinfo', get_string('textfields', 'block_ns_raes'));
         //titulo
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_ns_raes'));
@@ -116,25 +118,21 @@
         $languages= array('1'=>'English', '2'=>'Spanish');
         $select = $mform->addElement('select', 'languages', get_string('languages','block_ns_raes'), $languages);
         global $COURSE;
-        // $filemanager=$mform->addElement('filemanager', 'attachments', get_string('attachment', 'moodle'), null,
-        //             array('subdirs' => 0, 'maxbytes' => 8000, 'areamaxbytes' => 10485760, 'maxfiles' => 50,
-        //                    'accepted_types' => array('document')));
-        // // $this->set_upload_manager(new upload_manager('attachment', true, false, $COURSE, false, 0, true, true, false));
-        //     $mform->addElement('file', 'attachment', get_string('attachment', 'forum'));
-        //     $mform->addRule('attachment', null, 'required');
-        //$this->set_upload_manager(new upload_manager('attachment', true, false, $COURSE, false, 0, true, true, false));
-           // $mform->addElement('file', 'attachment', get_string('attachment','block_ns_raes'));
-            //$mform->addRule('attachment', null, 'required');
-           // $mform->setType('MAX_FILE_SIZE',PARAM_INT);
-      
-        $mform->addElement('filepicker', 'attachment', get_string('attachment','block_ns_raes'),null,
-                array('subdirs' => 0, 'maxbytes' => 8000, 'maxfiles' => 1, 'accepted_types' =>'imagen'));
-            //$mform->addRule('attachment', null, 'required');
-            $mform->setType('MAX_FILE_SIZE',PARAM_INT);
-        //----
-        
+        $mform->addElement('filepicker','attachment', get_string('attachment','block_ns_raes'),null,array('subdirs' => 0, 'maxbytes' => 8000, 'maxfiles' => 1, 'accepted_types' =>'imagen'));
+        $draftitemid = file_get_submitted_draft_itemid('attachment');
+        file_prepare_draft_area($draftitemid, $contextid, 'block_ns_raes', 'draft', $itemid,  array('subdirs' => 0, 'maxfiles' => 1));
+        $entry = new stdClass();
+        $fieldname = 'attachment';
+        $entry->$fieldname = $draftitemid;
+        $this->set_data($entry);
+        echo('draftitemidaasasa:');
+        print_r($draftitemid);
+        echo('contextid;');
+        print_r($contextid);
+        echo('-----');
+        print_r($itemid);
         $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_ns_raes'));
-        //$mform->addRule('linkurl', null, 'required', null, 'client');
+        
         $mform->setType('linkurl', PARAM_TEXT);
         $mform->addElement('hidden', 'blockid');
         $mform->setType('blockid', PARAM_INT);

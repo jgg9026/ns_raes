@@ -19,7 +19,18 @@
   $PAGE->set_heading(get_string('edithtml', 'block_ns_raes'));
   $PAGE->set_title('Nuevo Rea');
   $PAGE->set_context(context::instance_by_id($contextid));
-  $simplehtml = new ns_raes_form();
+  $itemid = new DateTime();
+  if($id!=0)
+  {
+    $ay=$DB->get_record('block_ns_raes', array('id' => $id));
+    $iditem=$ay->item_id;
+  }
+  else
+  {
+    $iditem=$itemid->getTimestamp();
+  }
+  
+  $simplehtml = new ns_raes_form(null, array('itemid'=>$iditem,'contextid'=>$contextid));
   $toform['blockid'] = $blockid;
   $toform['courseid'] = $courseid;
   $toform['component'] = $component;
@@ -35,8 +46,7 @@
   {
       $fromform=$simplehtml->get_data();
       $name = $simplehtml->get_new_filename('attachment');
-      $itemid = new DateTime();
-      $iditem=$itemid->getTimestamp();
+      
       $simplehtml->save_stored_file('attachment',$contextid,'block_ns_raes','draft',$iditem,'/',$name,true,$USER->id);
       $fromform->file_name=$name;
       $fromform->item_id=$iditem;
@@ -48,11 +58,42 @@
           $fromform->linkurl = 'http://'.$fromform->linkurl;
         }
       }
+      //------------------
       if ($fromform->id != 0)
       {
-        if (!$DB->update_record('block_ns_raes', $fromform)) {
-          print_error('updateerror', 'block_ns_raes');
-        }
+        $fs = get_file_storage();
+ 
+          $oldentry = $DB->get_record('block_ns_raes',array('id'=>$fromform->id));
+          // Prepare file record object
+          //print_object($oldentry);          
+          $fileinfo = array(
+              'component' => 'block_ns_raes',
+              'filearea' => 'draft',     // usually = table name
+              'itemid' => $oldentry->item_id,               // usually = ID of row in table
+              'contextid' => $oldentry->context_id, // ID of context
+              'filepath' => '/',           // any path beginning and ending in /
+              'filename' => $oldentry->file_name); // any filename
+           
+          // Get file
+          if($fileinfo['itemid']!=$fromform->item_id){
+            $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'], 
+                    $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);                          
+            if($file){
+              $hash = $file->get_contenthash();          
+              $file->delete();
+              $filestable = 'files';
+              $DB->delete_records($filestable, array('contenthash'=>$hash));              
+            }                          
+          }
+
+          if (!$DB->update_record('block_ns_raes', $fromform)) {
+            print_error('updateerror', 'block_ns_raes');
+          }else{
+
+          }
+        // if (!$DB->update_record('block_ns_raes', $fromform)) {
+        //   print_error('updateerror', 'block_ns_raes');
+        // }
       }else
       {
         $fromform->click_count=0;
