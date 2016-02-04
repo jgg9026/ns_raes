@@ -54,7 +54,7 @@
       if($fromform->linkurl!=null)
       {
          if (strpos($fromform->linkurl, 'http')===false){
-          print_object(strpos($fromform->linkurl, 'http'));
+          //print_object(strpos($fromform->linkurl, 'http'));
           $fromform->linkurl = 'http://'.$fromform->linkurl;
         }
       }
@@ -62,8 +62,7 @@
       if ($fromform->id != 0)
       {
         $fs = get_file_storage();
- 
-          $oldentry = $DB->get_record('block_ns_raes',array('id'=>$fromform->id));
+        $oldentry = $DB->get_record('block_ns_raes',array('id'=>$fromform->id));
           // Prepare file record object
           //print_object($oldentry);          
           $fileinfo = array(
