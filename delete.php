@@ -1,6 +1,5 @@
 <?php
   require_once('../../config.php');
-   
   $courseid = required_param('courseid', PARAM_INT);
   $id = optional_param('id', 0, PARAM_INT);
   $confirm = optional_param('confirm', 0, PARAM_INT);
