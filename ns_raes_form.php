@@ -125,12 +125,12 @@
         $fieldname = 'attachment';
         $entry->$fieldname = $draftitemid;
         $this->set_data($entry);
-        echo('draftitemidaasasa:');
-        print_r($draftitemid);
-        echo('contextid;');
-        print_r($contextid);
-        echo('-----');
-        print_r($itemid);
+        // echo('draftitemidaasasa:');
+        // print_r($draftitemid);
+        // echo('contextid;');
+        // print_r($contextid);
+        // echo('-----');
+        // print_r($itemid);
         $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_ns_raes'));
         
         $mform->setType('linkurl', PARAM_TEXT);
