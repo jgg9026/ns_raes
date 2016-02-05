@@ -1,5 +1,5 @@
 <?php 
-function block_ns_raes_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
+function block_nsreas_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
 	// Check the contextlevel is as expected - if your plugin is a block, this becomes CONTEXT_BLOCK, etc.
 		$fs = get_file_storage();
 		$fullpath = "/{$context->id}/block_nscoursefields/$filearea/$args[0]/$args[1]";

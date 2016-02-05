@@ -9,7 +9,7 @@
 	$componente = required_param('component', PARAM_RAW);
 	$id = required_param('id', PARAM_INT);
 
-	$consul1 = $DB->get_record('block_ns_raes',array('id'=> $id));
+	$consul1 = $DB->get_record('block_nsreas',array('id'=> $id));
 	$count = $consul1->click_count;
 	$count = $count+1;
 
@@ -17,8 +17,8 @@
 	$obj1->id = $id;
 	$obj1->click_count = $count;
 
-	if (!$DB->update_record('block_ns_raes', $obj1)) {
-          print_error('updateerror', 'block_ns_raes');
+	if (!$DB->update_record('block_nsreas', $obj1)) {
+          print_error('updateerror', 'block_nsreas');
         }
 
 	//$urlfixed = 'http://'.$urlext;

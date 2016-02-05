@@ -3,7 +3,7 @@
  
     $capabilities = array(
  
-    'block/ns_raes:viewpages' => array(
+    'block/nsreas:viewpages' => array(
  
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
@@ -17,7 +17,7 @@
         )
     ),
  
-    'block/ns_raes:managepages' => array(
+    'block/nsreas:managepages' => array(
  
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
@@ -30,7 +30,7 @@
             'manager' => CAP_ALLOW
         )
     ),
-       'block/ns_raes:addinstance' => array(
+       'block/nsreas:addinstance' => array(
         'riskbitmask' => RISK_SPAM | RISK_XSS,
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,

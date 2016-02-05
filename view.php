@@ -1,7 +1,7 @@
 <?php
  
   require_once('../../config.php');
-  require_once('ns_raes_form.php');
+  require_once('nsreas_form.php');
    
   global $USER, $DB, $OUTPUT, $PAGE, $COURSE;
   $courseid = required_param('courseid', PARAM_INT);
@@ -11,18 +11,18 @@
   $contextid = required_param('context_id',PARAM_INT);
   if (!$course = $DB->get_record('course', array('id' => $courseid)))
   {
-      print_error('invalidcourse', 'block_ns_raes', $courseid);
+      print_error('invalidcourse', 'block_nsreas', $courseid);
   }
   require_login($course);
-  $PAGE->set_url('/blocks/ns_raes/view.php', array('id' => $courseid));
+  $PAGE->set_url('/blocks/nsreas/view.php', array('id' => $courseid));
   $PAGE->set_pagelayout('standard');
-  $PAGE->set_heading(get_string('edithtml', 'block_ns_raes'));
+  $PAGE->set_heading(get_string('edithtml', 'block_nsreas'));
   $PAGE->set_title('Nuevo Rea');
   $PAGE->set_context(context::instance_by_id($contextid));
   $itemid = new DateTime();
   if($id!=0)
   {
-    $ay=$DB->get_record('block_ns_raes', array('id' => $id));
+    $ay=$DB->get_record('block_nsreas', array('id' => $id));
     $iditem=$ay->item_id;
   }
   else
@@ -30,7 +30,7 @@
     $iditem=$itemid->getTimestamp();
   }
   
-  $simplehtml = new ns_raes_form(null, array('itemid'=>$iditem,'contextid'=>$contextid));
+  $simplehtml = new nsreas_form(null, array('itemid'=>$iditem,'contextid'=>$contextid));
   $toform['blockid'] = $blockid;
   $toform['courseid'] = $courseid;
   $toform['component'] = $component;
@@ -47,7 +47,7 @@
       $fromform=$simplehtml->get_data();
       $name = $simplehtml->get_new_filename('attachment');
       
-      $simplehtml->save_stored_file('attachment',$contextid,'block_ns_raes','draft',$iditem,'/',$name,true,$USER->id);
+      $simplehtml->save_stored_file('attachment',$contextid,'block_nsreas','draft',$iditem,'/',$name,true,$USER->id);
       $fromform->file_name=$name;
       $fromform->item_id=$iditem;
       $fromform->context_id=$contextid;
@@ -62,11 +62,11 @@
       if ($fromform->id != 0)
       {
         $fs = get_file_storage();
-        $oldentry = $DB->get_record('block_ns_raes',array('id'=>$fromform->id));
+        $oldentry = $DB->get_record('block_nsreas',array('id'=>$fromform->id));
           // Prepare file record object
           //print_object($oldentry);          
           $fileinfo = array(
-              'component' => 'block_ns_raes',
+              'component' => 'block_nsreas',
               'filearea' => 'draft',     // usually = table name
               'itemid' => $oldentry->item_id,               // usually = ID of row in table
               'contextid' => $oldentry->context_id, // ID of context
@@ -85,19 +85,19 @@
             }                          
           }
 
-          if (!$DB->update_record('block_ns_raes', $fromform)) {
-            print_error('updateerror', 'block_ns_raes');
+          if (!$DB->update_record('block_nsreas', $fromform)) {
+            print_error('updateerror', 'block_nsreas');
           }else{
 
           }
-        // if (!$DB->update_record('block_ns_raes', $fromform)) {
-        //   print_error('updateerror', 'block_ns_raes');
+        // if (!$DB->update_record('block_nsreas', $fromform)) {
+        //   print_error('updateerror', 'block_nsreas');
         // }
       }else
       {
         $fromform->click_count=0;
-        if (!$DB->insert_record('block_ns_raes', $fromform)) {
-              print_error('inserterror', 'block_ns_raes');
+        if (!$DB->insert_record('block_nsreas', $fromform)) {
+              print_error('inserterror', 'block_nsreas');
         }
       }
       redirect($url);
@@ -108,7 +108,7 @@
     echo $OUTPUT->header();
     if ($id)
     {
-      $simplehtmlpage = $DB->get_record('block_ns_raes', array('id' => $id));
+      $simplehtmlpage = $DB->get_record('block_nsreas', array('id' => $id));
       $simplehtml->set_data($simplehtmlpage);
       $simplehtml->display();
     }

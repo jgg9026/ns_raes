@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="blocks/ns_raes/db" VERSION="20160201" COMMENT="XMLDB file for Moodle blocks/ns_raes"
+<XMLDB PATH="blocks/nsreas/db" VERSION="20160201" COMMENT="XMLDB file for Moodle blocks/nsreas"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="block_ns_raes" COMMENT="Default comment for ns_raes, please edit me">
+    <TABLE NAME="block_nsreas" COMMENT="Default comment for nsreas, please edit me">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="blockid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Block id"/>

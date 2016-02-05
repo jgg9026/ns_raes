@@ -3,27 +3,27 @@
   require_once("$CFG->libdir/formslib.php");
 
  
-  class ns_raes_form extends moodleform {
+  class nsreas_form extends moodleform {
  
     function definition() {
  
         $mform =& $this->_form;
         $itemid = $this->_customdata['itemid'];
         $contextid = $this->_customdata['contextid'];
-        $mform->addElement('header','displayinfo', get_string('textfields', 'block_ns_raes'));
+        $mform->addElement('header','displayinfo', get_string('textfields', 'block_nsreas'));
         //titulo
-        $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_ns_raes'));
+        $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_nsreas'));
         $mform->addRule('pagetitle', null, 'required', null, 'client');
         $mform->setType('pagetitle', PARAM_TEXT);
         //Autor
-        $mform->addElement('text','author_name', get_string('author_name','block_ns_raes'));
+        $mform->addElement('text','author_name', get_string('author_name','block_nsreas'));
         $mform->addRule('author_name', null, 'required', null, 'client');
         $mform->setType('author_name', PARAM_TEXT);
-        $mform->addElement('text', 'author_lastname', get_string('author_lastname','block_ns_raes'));
+        $mform->addElement('text', 'author_lastname', get_string('author_lastname','block_nsreas'));
         $mform->addRule('author_lastname', null, 'required', null, 'client');
         $mform->setType('author_lastname', PARAM_TEXT);
         //keywords
-        $mform->addElement('text','keywords',get_string('keywords','block_ns_raes'));
+        $mform->addElement('text','keywords',get_string('keywords','block_nsreas'));
         $mform->addRule('keywords', null, 'required', null, 'client');
         $mform->setType('keywords', PARAM_TEXT);
         //Select area
@@ -66,14 +66,14 @@
         '502'=>'Administrativa - Todas',
         '503'=>'Biológica - Todas',
         '504'=>'Técnica - Todas');
-        $select = $mform->addElement('select', 'areas', get_string('areas','block_ns_raes'), $areas);
+        $select = $mform->addElement('select', 'areas', get_string('areas','block_nsreas'), $areas);
 
         //Resume
-        $mform->addElement('textarea', 'resume', get_string('resume', 'block_ns_raes'),'wrap="virtual" rows="5" cols="50"');
+        $mform->addElement('textarea', 'resume', get_string('resume', 'block_nsreas'),'wrap="virtual" rows="5" cols="50"');
         $mform->setType('resume', PARAM_RAW);
         $mform->addRule('resume', null, 'required', null, 'client');
         //Description
-        $mform->addElement('textarea', 'linkdescription', get_string('linkdescription', 'block_ns_raes'),'wrap="virtual" rows="5" cols="50"');
+        $mform->addElement('textarea', 'linkdescription', get_string('linkdescription', 'block_nsreas'),'wrap="virtual" rows="5" cols="50"');
         $mform->setType('linkdescription', PARAM_RAW);
         $mform->addRule('linkdescription', null, 'required', null, 'client');
         //resource type
@@ -113,14 +113,14 @@
         '34'=>'Evaluación a Distancia',
         '35'=>'Guía Didactica',
         '36'=>'Otro');
-        $select = $mform->addElement('select', 'resource_type', get_string('recursos','block_ns_raes'), $resource_type);
+        $select = $mform->addElement('select', 'resource_type', get_string('recursos','block_nsreas'), $resource_type);
         //language
         $languages= array('1'=>'English', '2'=>'Spanish');
-        $select = $mform->addElement('select', 'languages', get_string('languages','block_ns_raes'), $languages);
+        $select = $mform->addElement('select', 'languages', get_string('languages','block_nsreas'), $languages);
         global $COURSE;
-        $mform->addElement('filepicker','attachment', get_string('attachment','block_ns_raes'),null,array('subdirs' => 0, 'maxbytes' => 8000, 'maxfiles' => 1, 'accepted_types' =>'imagen'));
+        $mform->addElement('filepicker','attachment', get_string('attachment','block_nsreas'),null,array('subdirs' => 0, 'maxbytes' => 8000, 'maxfiles' => 1, 'accepted_types' =>'imagen'));
         $draftitemid = file_get_submitted_draft_itemid('attachment');
-        file_prepare_draft_area($draftitemid, $contextid, 'block_ns_raes', 'draft', $itemid,  array('subdirs' => 0, 'maxfiles' => 1));
+        file_prepare_draft_area($draftitemid, $contextid, 'block_nsreas', 'draft', $itemid,  array('subdirs' => 0, 'maxfiles' => 1));
         $entry = new stdClass();
         $fieldname = 'attachment';
         $entry->$fieldname = $draftitemid;
@@ -131,7 +131,7 @@
         // print_r($contextid);
         // echo('-----');
         // print_r($itemid);
-        $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_ns_raes'));
+        $mform->addElement('text', 'linkurl', get_string('linkurl', 'block_nsreas'));
         
         $mform->setType('linkurl', PARAM_TEXT);
         $mform->addElement('hidden', 'blockid');
